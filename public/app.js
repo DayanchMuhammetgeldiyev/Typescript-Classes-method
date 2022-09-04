@@ -1,25 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const _nvoice_1 = require("./classes/\u0130nvoice");
-const Payment_1 = require("./classes/Payment");
-const ListTemplate_1 = require("./classes/ListTemplate");
-const form = document.querySelector(".new-item-form");
-const type = document.querySelector("#type");
-const toform = document.querySelector("#toform");
-const details = document.querySelector("#details");
-const amount = document.querySelector("#amount");
-const ul = document.querySelector("ul");
-const list = new ListTemplate_1.ListTemplate(ul);
-form.addEventListener("submit", (e) => {
+const _nvoice_js_1 = require("./classes/\u0130nvoice.js");
+const Payment_js_1 = require("./classes/Payment.js");
+const ListTemplate_js_1 = require("./classes/ListTemplate.js");
+const form = document.querySelector('.new-item-form');
+console.log(form.children);
+// inputs
+const type = document.querySelector('#type');
+const tofrom = document.querySelector('#tofrom');
+const details = document.querySelector('#details');
+const amount = document.querySelector('#amount');
+// list template instance
+const ul = document.querySelector('ul');
+const list = new ListTemplate_js_1.ListTemplate(ul);
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let values;
-    values = [toform.value, details.value, amount.valueAsNumber];
     let doc;
-    if (type.value === "invoice") {
-        doc = new _nvoice_1.Invoice(...values);
+    if (type.value === 'invoice') {
+        doc = new _nvoice_js_1.Invoice(tofrom.value, details.value, amount.valueAsNumber);
     }
     else {
-        doc = new Payment_1.Payment(...values);
+        doc = new Payment_js_1.Payment(tofrom.value, details.value, amount.valueAsNumber);
     }
-    list.render(doc, type.value, "end");
+    list.render(doc, type.value, 'end');
 });
